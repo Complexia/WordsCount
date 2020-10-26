@@ -1,0 +1,14 @@
+<% provide(:title, @user.firstName) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.firstName %>
+        <%= link_to "Connect", '#', class: "btn btn-lg btn-primary" %>
+      </h1>
+      
+    </section>
+    
+  </aside>
+  
+</div>
