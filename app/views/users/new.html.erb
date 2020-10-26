@@ -1,30 +1,46 @@
-<h1>Sign up</h1>
+<% if logged_in? %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |f| %>
-        <%= render 'shared/error_messages' %>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
 
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
+            <%= form_for :calculate, url: "/calculate" do |form| %>
+                <%= form.label :'input' %>
+                <%= form.text_field :input, class: 'form-control' %>
+                <%= form.submit "Calculate", class: "btn btn-primary"  %>
+            <% end  %>
 
-        <%= f.label :'First name' %>
-        <%= f.text_field :firstName, class: 'form-control' %>
+        </div>
+    </div>
 
-        <%= f.label :'Last name' %>
-        <%= f.text_field :lastName, class: 'form-control' %>
+    <p><%= link_to 'Profile', current_user %></p>
+<% else %>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_with(model: @user, local: true) do |f| %>
+                <%= render 'shared/error_messages' %>
 
-        <%= f.label :'Phone number' %>
-        <%= f.text_field :phoneNumber, class: 'form-control'%>
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+                <%= f.label :'First name' %>
+                <%= f.text_field :firstName, class: 'form-control' %>
 
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+                <%= f.label :'Last name' %>
+                <%= f.text_field :lastName, class: 'form-control' %>
 
-        <%= f.submit "Sign up", class: "btn btn-primary" %>       
-    <% end %>
-  </div>
-</div>
+                <%= f.label :'Phone number' %>
+                <%= f.text_field :phoneNumber, class: 'form-control'%>
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+
+                <%= f.label :password_confirmation, "Confirmation" %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+                <%= f.submit "Sign up", class: "btn btn-primary" %>       
+            <% end %>
+            <p>Already have an account? <%= link_to "Log in", login_path %></p>
+        </div>
+    </div>
+<% end %>
 
